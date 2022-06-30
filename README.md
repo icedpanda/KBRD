@@ -1,5 +1,4 @@
-## [KBRD: Towards **K**nowledge-**B**ased **R**ecommender **
-D**ialog System](https://arxiv.org/abs/1908.05391)
+## [KBRD: Towards Knowledge-Based Recommender Dialog System](https://arxiv.org/abs/1908.05391)
 
 [![GitHub stars](https://img.shields.io/github/stars/THUDM/KBRD)](https://github.com/THUDM/KBRD/stargazers)
 [![GitHub license](https://img.shields.io/github/license/THUDM/KBRD)](https://github.com/THUDM/KBRD/blob/master/LICENSE)
