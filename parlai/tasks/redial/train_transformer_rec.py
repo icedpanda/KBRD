@@ -7,6 +7,8 @@
 
 For documentation, see parlai.scripts.train_model.
 """
+import sys
+sys.path.append("/mnt/d/GitHub/KBRD")
 
 from parlai.scripts.train_model import TrainLoop, setup_args
 
