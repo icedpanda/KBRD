@@ -14,6 +14,7 @@ def _split_data(redial_path):
     data = []
     for line in open(os.path.join(redial_path, "train_data.jsonl")):
         data.append(json.loads(line))
+    random.seed(42)
     random.shuffle(data)
     n_data = len(data)
     split_data = [data[: int(0.9 * n_data)], data[int(0.9 * n_data) :]]
