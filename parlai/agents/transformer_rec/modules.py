@@ -15,7 +15,7 @@ import numpy as np
 from parlai.core.torch_generator_agent import TorchGeneratorModel
 from parlai.core.utils import neginf
 from parlai.agents.kbrd.modules import KBRD
-from parlai.agents.kbrd.kbrd import _load_kg_embeddings
+# from parlai.agents.kbrd.kbrd import _load_kg_embeddings
 
 
 def _normalize(tensor, norm_layer):

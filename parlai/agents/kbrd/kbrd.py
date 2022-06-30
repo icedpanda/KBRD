@@ -9,7 +9,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 from sklearn.feature_extraction.text import TfidfVectorizer
-from gensim.models.doc2vec import TaggedDocument, Doc2Vec
+# from gensim.models.doc2vec import TaggedDocument, Doc2Vec
 import nltk
 
 
@@ -20,56 +20,56 @@ from .modules import KBRD
 
 
 
-def _load_kg_embeddings(entity2entityId, dim, embedding_path):
-    kg_embeddings = torch.zeros(len(entity2entityId), dim)
-    with open(embedding_path, 'r') as f:
-        for line in f.readlines():
-            line = line.split('\t')
-            entity = line[0]
-            if entity not in entity2entityId:
-                continue
-            entityId = entity2entityId[entity]
-            embedding = torch.Tensor(list(map(float, line[1:])))
-            kg_embeddings[entityId] = embedding
-    return kg_embeddings
-
-def _load_text_embeddings(entity2entityId, dim, abstract_path):
-    entities = []
-    texts = []
-    sent_tok = nltk.data.load('tokenizers/punkt/english.pickle')
-    word_tok = nltk.tokenize.treebank.TreebankWordTokenizer()
-    def nltk_tokenize(text):
-        return [token for sent in sent_tok.tokenize(text)
-                for token in word_tok.tokenize(sent)]
-
-    with open(abstract_path, 'r') as f:
-        for line in f.readlines():
-            try:
-                entity = line[:line.index('>')+1]
-                if entity not in entity2entityId:
-                    continue
-                line = line[line.index('> "')+2:len(line)-line[::-1].index('@')-1]
-                entities.append(entity)
-                texts.append(line.replace('\\', ''))
-            except Exception:
-                pass
-    vec_dim = 64
-    try:
-        model = Doc2Vec.load('doc2vec')
-    except Exception:
-        corpus = [nltk_tokenize(text) for text in texts]
-        corpus = [
-            TaggedDocument(words, ['d{}'.format(idx)])
-            for idx, words in enumerate(corpus)
-        ]
-        model = Doc2Vec(corpus, vector_size=vec_dim, min_count=5, workers=28)
-        model.save('doc2vec')
-
-    full_text_embeddings = torch.zeros(len(entity2entityId), vec_dim)
-    for i, entity in enumerate(entities):
-        full_text_embeddings[entity2entityId[entity]] = torch.from_numpy(model.docvecs[i])
-
-    return full_text_embeddings
+# def _load_kg_embeddings(entity2entityId, dim, embedding_path):
+#     kg_embeddings = torch.zeros(len(entity2entityId), dim)
+#     with open(embedding_path, 'r') as f:
+#         for line in f.readlines():
+#             line = line.split('\t')
+#             entity = line[0]
+#             if entity not in entity2entityId:
+#                 continue
+#             entityId = entity2entityId[entity]
+#             embedding = torch.Tensor(list(map(float, line[1:])))
+#             kg_embeddings[entityId] = embedding
+#     return kg_embeddings
+#
+# def _load_text_embeddings(entity2entityId, dim, abstract_path):
+#     entities = []
+#     texts = []
+#     sent_tok = nltk.data.load('tokenizers/punkt/english.pickle')
+#     word_tok = nltk.tokenize.treebank.TreebankWordTokenizer()
+#     def nltk_tokenize(text):
+#         return [token for sent in sent_tok.tokenize(text)
+#                 for token in word_tok.tokenize(sent)]
+#
+#     with open(abstract_path, 'r') as f:
+#         for line in f.readlines():
+#             try:
+#                 entity = line[:line.index('>')+1]
+#                 if entity not in entity2entityId:
+#                     continue
+#                 line = line[line.index('> "')+2:len(line)-line[::-1].index('@')-1]
+#                 entities.append(entity)
+#                 texts.append(line.replace('\\', ''))
+#             except Exception:
+#                 pass
+#     vec_dim = 64
+#     try:
+#         model = Doc2Vec.load('doc2vec')
+#     except Exception:
+#         corpus = [nltk_tokenize(text) for text in texts]
+#         corpus = [
+#             TaggedDocument(words, ['d{}'.format(idx)])
+#             for idx, words in enumerate(corpus)
+#         ]
+#         model = Doc2Vec(corpus, vector_size=vec_dim, min_count=5, workers=28)
+#         model.save('doc2vec')
+#
+#     full_text_embeddings = torch.zeros(len(entity2entityId), vec_dim)
+#     for i, entity in enumerate(entities):
+#         full_text_embeddings[entity2entityId[entity]] = torch.from_numpy(model.docvecs[i])
+#
+#     return full_text_embeddings
 
 class KbrdAgent(TorchAgent):
     @classmethod
