@@ -11,6 +11,10 @@ at [arXiv](https://arxiv.org/abs/1908.05391).
   at [THUDM/NLP4Rec-Papers](https://github.com/THUDM/NLP4Rec-Papers).
   Contributions are welcome.
 
+**Ths is the Support Branch for me to reproduce the results of the paper.**
+
+see the original repo [here](https://github.com/THUDM/KBRD):
+
 ## Prerequisites
 
 - Linux
