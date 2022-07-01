@@ -15,7 +15,7 @@ at [arXiv](https://arxiv.org/abs/1908.05391).
 
 - Linux
 - Python 3.6
-- PyTorch == 1.7.0
+- PyTorch == 1.7.1
 
 ## Getting Started
 
@@ -40,11 +40,11 @@ conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11
 # depend on your gpu type
 # https://pytorch-geometric.readthedocs.io/en/latest/
 # https://pytorch-geometric.com/whl/torch-{TORCH_version}+{CUDA}.html
-# I was only able to install 2.0.5, 0.6.12, 2.0.3 for my GPU.
+# I was only able to install 2.0.5, 0.6.12, 1.7.2 for my GPU and compatible with this repo.
 # it may take up to 60 minutes to install. :(
 pip install torch-scatter==2.0.5 -f https://pytorch-geometric.com/whl/torch-1.7.1+cu110.html
 pip install torch-spare==0.6.12 -f https://pytorch-geometric.com/whl/torch-1.7.1+cu110.html
-pip install torch-geometric==2.0.3 -f https://pytorch-geometric.com/whl/torch-1.7.1+cu110.html
+pip install torch-geometric==1.7.2 -f https://pytorch-geometric.com/whl/torch-1.7.1+cu110.html
 ```
 
 Install dependencies with
