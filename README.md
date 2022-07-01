@@ -28,7 +28,7 @@ see the original repo [here](https://github.com/THUDM/KBRD):
 Clone this repo.
 
 ```bash
-git clone https://github.com/THUDM/KBRD
+git clone https://github.com/icedpanda/KBRD
 cd KBRD
 ```
 
