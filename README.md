@@ -30,17 +30,17 @@ cd KBRD
 
 Please install dependencies by
 
-**Update with my workaround pytorch version**
+> **Update with my workaround pytorch version**
 
 ```bash
-# install cudatoolkts based on your gpu type
+# install cudatoolkts based on your gpu version
 # Latest pytorch is not compatible with this repo and took me a while to find the right version.
 conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch
 
-# depend on your gpu type
+# depend on your gpu version
 # https://pytorch-geometric.readthedocs.io/en/latest/
 # https://pytorch-geometric.com/whl/torch-{TORCH_version}+{CUDA}.html
-# I was only able to install 2.0.5, 0.6.12, 1.7.2 for my GPU and compatible with this repo.
+# I was only able to install 2.0.5, 0.6.12, 1.7.2 for my GPUs and compatible with this repo.
 # it may take up to 60 minutes to install. :(
 pip install torch-scatter==2.0.5 -f https://pytorch-geometric.com/whl/torch-1.7.1+cu110.html
 pip install torch-spare==0.6.12 -f https://pytorch-geometric.com/whl/torch-1.7.1+cu110.html
@@ -67,7 +67,7 @@ pip install -r requirements.txt
 
 ### Update path
 
-You may need to update the module path in the follow files to match your
+You may need to update the module path to the follow files to match your
 environment. (line 10)
 
 - `parlai/tasks/redial/train_kbrd.py`
