@@ -18,6 +18,7 @@ if __name__ == '__main__':
         task='redial',
         model='transformer_rec/generator',
         model_file='saved/transformer_rec',
+        fp16=True,
         dict_tokenizer='nltk',
         dict_lower=True,
         batchsize=64,
