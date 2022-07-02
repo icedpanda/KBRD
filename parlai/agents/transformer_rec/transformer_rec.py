@@ -85,7 +85,7 @@ class TransformerRankerAgent(TorchRankerAgent):
                            help='use model in data parallel, requires '
                                 'multiple gpus')
         argparser.set_defaults(
-            learningrate=0.0001,
+            learningrate=0.001,
             optimizer='adamax',
             truncate=1024,
         )

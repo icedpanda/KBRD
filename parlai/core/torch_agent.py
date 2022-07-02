@@ -378,7 +378,7 @@ class TorchAgent(Agent):
                  ' should be valid.'
         )
         agent.add_argument(
-            '-lr', '--learningrate', type=float, default=1,
+            '-lr', '--learningrate', type=float, default=0.001,
             help='learning rate'
         )
         agent.add_argument(
