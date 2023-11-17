@@ -431,7 +431,7 @@ class ParlaiParser(argparse.ArgumentParser):
             help='degree of variation of size allowed in batch',
             hidden=True)
         pytorch.add_argument(
-            '--shuffle', type='bool', default=False,
+            '--shuffle', type='bool', default=True,
             help='Whether to shuffle the data',
             hidden=True)
         pytorch.add_argument(

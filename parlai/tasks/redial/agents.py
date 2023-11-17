@@ -112,6 +112,8 @@ class RedialTeacher(DialogTeacher):
             initiator_id = instance["initiatorWorkerId"]
             respondent_id = instance["respondentWorkerId"]
             messages = instance["messages"]
+            initiator_sentiment = instance["initiatorQuestions"]
+            respondent_sentiment = instance["respondentQuestions"]
             message_idx = 0
             new_episode = True
 

@@ -1,0 +1,10 @@
+standard
+
+test:{'exs': 7978, 'accuracy': 0, 'f1': 0, 'bleu': 0, 'num_updates': 387, 'num_tokens': 4969, 'num_batches': 40, 'loss': 8.522, 'base_loss': 8.522, 'acc': 0, 'auc': 0, 'recall@1': 0.033, 'num_tokens_recall@1': 4969, 'recall@10': 0.1582, 'num_tokens_recall@10': 4969, 'recall@10@
+turn0': 0.1013, 'num_tokens_recall@10@turn0': 977, 'recall@10@turn1': 0.1853, 'num_tokens_recall@10@turn1': 896, 'recall@10@turn2': 0.1765, 'num_tokens_recall@10@turn2': 850, 'recall@10@turn3': 0.1491, 'num_tokens_recall@10@turn3': 711, 'recall@10@turn4': 0.1495, 'num_tokens_re
+call@10@turn4': 582, 'recall@10@turn5': 0.1881, 'num_tokens_recall@10@turn5': 319, 'recall@10@turn6': 0.1818, 'num_tokens_recall@10@turn6': 242, 'recall@1@turn0': 0.03685, 'num_tokens_recall@1@turn0': 977, 'recall@1@turn1': 0.03683, 'num_tokens_recall@1@turn1': 896, 'recall@1@t
+urn2': 0.02353, 'num_tokens_recall@1@turn2': 850, 'recall@1@turn3': 0.02391, 'num_tokens_recall@1@turn3': 711, 'recall@1@turn4': 0.02921, 'num_tokens_recall@1@turn4': 582, 'recall@1@turn5': 0.04075, 'num_tokens_recall@1@turn5': 319, 'recall@1@turn6': 0.04545, 'num_tokens_recall
+@1@turn6': 242, 'recall@50': 0.3298, 'num_tokens_recall@50': 4969, 'recall@50@turn0': 0.2528, 'num_tokens_recall@50@turn0': 977, 'recall@50@turn1': 0.3036, 'num_tokens_recall@50@turn1': 896, 'recall@50@turn2': 0.3706, 'num_tokens_recall@50@turn2': 850, 'recall@50@turn3': 0.3446, 'num_tokens_recall@50@turn3': 711, 'recall@50@turn4': 0.3677, 'num_tokens_recall@50@turn4': 582, 'recall@50@turn5': 0.373, 'num_tokens_recall@50@turn5': 319, 'recall@50@turn6': 0.3678, 'num_tokens_recall@50@turn6': 242}
+
+
+liked

@@ -19,6 +19,7 @@ def kaiming_reset_parameters(linear_module):
         bound = 1 / math.sqrt(fan_in)
         nn.init.uniform_(linear_module.bias, -bound, bound)
 
+
 class SelfAttentionLayer(nn.Module):
     def __init__(self, dim, da, alpha=0.2, dropout=0.5):
         super(SelfAttentionLayer, self).__init__()
@@ -33,9 +34,16 @@ class SelfAttentionLayer(nn.Module):
 
     def forward(self, h):
         N = h.shape[0]
-        e = torch.matmul(torch.tanh(torch.matmul(h, self.a)), self.b).squeeze(dim=1)
+        e = torch.matmul(
+            torch.tanh(
+                torch.matmul(
+                    h,
+                    self.a)),
+            self.b).squeeze(
+                dim=1)
         attention = F.softmax(e)
         return torch.matmul(attention, h)
+
 
 def _edge_list(kg, n_entity):
     edge_list = []
@@ -45,8 +53,10 @@ def _edge_list(kg, n_entity):
             continue
         for tail_and_relation in kg[entity]:
             if entity != tail_and_relation[1]:
-                edge_list.append((entity, tail_and_relation[1], tail_and_relation[0]))
-                edge_list.append((tail_and_relation[1], entity, tail_and_relation[0]))
+                edge_list.append(
+                    (entity, tail_and_relation[1], tail_and_relation[0]))
+                edge_list.append(
+                    (tail_and_relation[1], entity, tail_and_relation[0]))
             else:
                 self_loop_id = tail_and_relation[0]
     assert self_loop_id
@@ -63,7 +73,9 @@ def _edge_list(kg, n_entity):
         if relation_cnt[r] > 1000 and r not in relation_idx:
             relation_idx[r] = len(relation_idx)
 
-    return [(h, t, relation_idx[r]) for h, t, r in edge_list if relation_cnt[r] > 1000], len(relation_idx)
+    return [(h, t, relation_idx[r])
+            for h, t, r in edge_list if relation_cnt[r] > 1000], len(relation_idx)
+
 
 class KBRD(nn.Module):
     def __init__(
@@ -88,6 +100,8 @@ class KBRD(nn.Module):
 
         self.criterion = nn.CrossEntropyLoss()
         self.kge_criterion = nn.Softplus()
+        self.pos_encoder = nn.Embedding(30, self.dim)
+        nn.init.xavier_uniform_(self.pos_encoder.weight.data)
 
         self.self_attn = SelfAttentionLayer(self.dim, self.dim)
         self.output = nn.Linear(self.dim, self.n_entity)
@@ -95,7 +109,11 @@ class KBRD(nn.Module):
         self.kg = kg
 
         edge_list, self.n_relation = _edge_list(self.kg, self.n_entity)
-        self.rgcn = RGCNConv(self.n_entity, self.dim, self.n_relation, num_bases=num_bases)
+        self.rgcn = RGCNConv(
+            self.n_entity,
+            self.dim,
+            self.n_relation,
+            num_bases=num_bases)
         edge_list = list(set(edge_list))
         edge_list_tensor = torch.LongTensor(edge_list).cuda()
         self.edge_idx = edge_list_tensor[:, :2].t()
@@ -133,6 +151,14 @@ class KBRD(nn.Module):
                 user_representation_list.append(torch.zeros(self.dim).cuda())
                 continue
             user_representation = nodes_features[seed_set]
+            user_representation = self.pos_encoding(
+                user_representation, seed_set)
             user_representation = self.self_attn(user_representation)
             user_representation_list.append(user_representation)
         return torch.stack(user_representation_list), nodes_features
+
+    def pos_encoding(self, x, entity_list):
+        seq_len = len(entity_list)
+        positions = torch.arange(seq_len, dtype=torch.long,
+                                 device=x.device)
+        return x + self.pos_encoder(positions)

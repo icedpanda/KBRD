@@ -12,6 +12,19 @@ sys.path.append("/mnt/d/GitHub/KBRD")
 
 from parlai.scripts.train_model import TrainLoop, setup_args
 
+
+def seed_everything(seed: int):
+    import random, os
+    import numpy as np
+    import torch
+
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+
+
 if __name__ == "__main__":
     parser = setup_args()
     parser.set_defaults(
@@ -34,4 +47,5 @@ if __name__ == "__main__":
         tensorboard_metrics="loss,base_loss,kge_loss,l2_loss,acc,auc,recall@1,recall@10,recall@50",
     )
     opt = parser.parse_args()
+    seed_everything(42)
     TrainLoop(opt).train()

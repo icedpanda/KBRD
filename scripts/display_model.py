@@ -7,7 +7,8 @@
 """
 See parlai.scripts.display_model for documentation.
 """
-
+import sys
+sys.path.append("/mnt/d/GitHub/KBRD")
 from parlai.scripts.display_model import display_model, setup_args
 
 if __name__ == '__main__':

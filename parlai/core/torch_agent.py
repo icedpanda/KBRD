@@ -372,6 +372,7 @@ class TorchAgent(Agent):
         # optimizer arguments
         agent.add_argument(
             '--fp16', type='bool', default=False, help='Use fp16 computations.')
+        # mark
         agent.add_argument(
             '-opt', '--optimizer', default='sgd', choices=cls.optim_opts(),
             help='Choose between pytorch optimizers. Any member of torch.optim'
